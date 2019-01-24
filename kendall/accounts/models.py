@@ -1,0 +1,85 @@
+from django.db import models
+from django.db.models.signals import post_save, pre_save
+from django.contrib.auth.models import AbstractBaseUser
+from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
+from django.dispatch import receiver
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+from accounts.accounts_managers import MyUserManager
+
+
+
+
+# #####################
+#       USER MODEL
+# #####################
+
+class MyUser(AbstractBaseUser):
+    email       = models.EmailField(verbose_name=_('Addresse email'), max_length=255, unique=True,)
+    nom         = models.CharField(max_length=100, null=True, blank=True)
+    prenom      = models.CharField(max_length=100, null=True, blank=True)
+    
+    active           = models.BooleanField(default=True)
+    admin            = models.BooleanField(default=False)
+    staff            = models.BooleanField(default=False)
+    
+    objects = MyUserManager()
+
+    USERNAME_FIELD      = 'email'
+    REQUIRED_FIELDS     = []
+
+    def __str__(self):
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
+    @property
+    def is_admin(self):
+        return self.staff
+
+
+    @property
+    def is_staff(self):
+        return self.staff
+
+
+class MyUserProfile(models.Model):
+    myuser_id           = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    stripe_id           = models.CharField(max_length=100, blank=True, null=True)
+    date_naissance      = models.DateField(default=timezone.now, blank=True, null=True)
+    telephone           = models.CharField(max_length=11, blank=True, null=True)
+    adresse             = models.CharField(max_length=150, blank=True, null=True)
+    ville               = models.CharField(max_length=100, blank=True, null=True)
+    code_postal         = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return self.myuser_id.email
+
+
+# #####################
+#       TOKENS
+# #####################
+
+class AccountsToken(models.Model):
+    token = models.CharField(default='erzezeuieuo', max_length=15)
+    for_user = models.PositiveIntegerField(blank=True, null=True)
+    expiry_date = models.DateField(default=timezone.now)
+    created_on = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.token
+
+
+# #####################
+#       SIGNALS
+# #####################
+
+@receiver(post_save, sender=MyUser)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        MyUserProfile.objects.create(myuser_id=instance)

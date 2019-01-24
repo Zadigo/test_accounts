@@ -1,0 +1,9 @@
+{% comment "social registrations" %}
+<div class="row center">
+    <div class="col s12 l5 offset-l3">
+        <div class="card-panel z-depth-0">
+        <a href="{% url 'social:begin' backend='linkedin-oauth2' %}" class="btn-large"><i class="fab fa-linkedin left"></i>LinkedIn</a>
+        <a href="{% url 'social:begin' backend='google-oauth2' %}" class="btn-large"><i class="fab fa-google left"></i>Google</a>
+    </div>
+</div>
+{% endcomment %}
