@@ -15,12 +15,9 @@ from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import View
 
-from accounts.forms import (AddressProfileForm, BaseProfileForm,
-                            PersonalizationProfileForm, UserLoginForm,
+from accounts.forms import (AddressProfileForm, BaseProfileForm, UserLoginForm,
                             UserSignupForm)
 from accounts.models import AccountsToken, MyUser, MyUserProfile
-
-
 
 # #####################
 #  REGISTRATION VIEWS

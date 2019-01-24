@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block meta_description %}
+    <meta name="description" content="{% trans 'XXXX' %}">
+{% endblock meta_description %}
+
+{% block hero %}
+    <div class="hero-image">
+        <div class="hero-wrapper">
+            <div class="call-to-action">
+                <span class="lead-stronger">{% trans 'Achetez les meilleurs produits' %}</span>
+                <span class="lead-subtitle">
+                    {% trans 'Le prêt à porter de marques' %}
+                    <span class="lead-button">
+                        <a href="{% url 'products_stock' %}" class="btn-large">{% trans 'Acheter' %}</a>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    {% block body %}
+        <section class="section" id="hero-overview">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 l6">
+                        <a href="{% url 'products_stock' %}?cat=femme">
+                            <img src="media/banner-01.jpg" class="responsive-img" alt="banner">
+                            <div class="hero-overview-block">
+                                <span class="" data-hover="null">{% trans 'Femme' %}</span>
+                            </div>        
+                        </a>
+                    </div>
+                    <div class="col s12 l6">
+                        <a href="{% url 'products_stock' %}?cat=homme">
+                            <img src="media/banner-02.jpg" class="responsive-img" alt="banner">
+                            <div class="hero-overview-block">
+                                <span class="" data-hover="null">{% trans 'Homme' %}</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 l4">
+                        <img src="media/banner-07.jpg" class="responsive-img" alt="banner">
+                    </div>
+                    <div class="col s12 l4">
+                        <img src="media/banner-08.jpg" class="responsive-img" alt="banner">
+                    </div>
+                    <div class="col s12 l4">
+                        <img src="media/banner-09.jpg" class="responsive-img" alt="banner">
+                    </div>    
+                </div>
+
+                <div class="row">
+                    <h4 class="uppercase">{% trans 'Product overview' %}</h4>
+                </div>
+            </div>
+        </section>
+    {% endblock body %}
+{% endblock hero %}

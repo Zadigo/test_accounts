@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        {% block meta_description %}{% endblock meta_description %}
+
+        {% block meta_keywords %}{% endblock meta_keywords %}
+
+        {% block author %}
+            <meta name="author" content="">
+        {% endblock author %}
+
+        <meta name="theme-color" content="#e53935"/>
+
+        <title>{% block title %}{% endblock title %}</title>
+
+        {% block share_metatags %}
+            <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="E-commerce" />
+            <meta property="og:description" content="" />
+            <meta property="og:image" content="https://s3.eu-west-3.amazonaws.com/jobswebsite/media/hero/hero6.jpg" />
+            <meta property="og:image:alt" content="E-commerce" />
+        {% endblock share_metatags %}
+        
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+        <!-- Fontawesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Favicon -->
+        {% comment "favicon" %}
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        {% endcomment %}
+
+        <!-- Custom stylesheets -->
+        <link rel="stylesheet" href="{% static 'extended_materialize.css' %}">
+        <link rel="stylesheet" href="{% static 'hero.css' %}">
+
+        {% block extra_css %}{% endblock extra_css %}
+        
+        <link rel="alternate" href="kurrikulam.com" hreflang="fr-fr" />
+    </head>
+    
+    <body>
+        
+        {% include "nav.html" %}
+        
+        <!-- Hero -->
+        {% block hero %}
+
+            <!-- Main content -->
+            <main>
+                <div class="container">
+                    {% if messages %}
+                        <ul class="alert alert-success fade">
+                            {% for message in messages %}
+                                <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% block body %}
+                        <div id="offlinedata">
+                            <!-- PROGRESSIVE WEB APP -->
+                        </div>
+                    {% endblock body %}
+                </div>
+            </main>
+            <!-- END Main content -->
+
+        {% endblock hero %}
+        <!-- END Hero -->
+        
+        <!-- Footer --> 
+        {% comment "footer" %}
+        {% include "footer.html" %}
+        {% endcomment %}
+
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    
+        <!-- Stripe -->
+        <!-- <script src="https://js.stripe.com/v3/"></script> -->
+        
+        <!-- Intercom -->
+        {% block intercom %}{% endblock intercom %}
+
+        <!-- Appcues -->
+        <!-- <script src="//fast.appcues.com/36867.js"></script> -->
+        {% block appcues %}{% endblock appcues %}
+        
+
+        <script>
+            $(document).ready(function(){
+                // Sidenav
+                $('.sidenav').sidenav();
+                // dropdown
+                $(".dropdown-trigger").dropdown();
+                // select
+                $('select').formSelect();
+                // datepicker
+                $('.datepicker').datepicker();
+                // Timepicker
+                $('.timepicker').timepicker();
+                // modal
+                $('.modal').modal();
+                // Tooltips
+                $('.tooltipped').tooltip();
+                // Action button
+                $('.fixed-action-btn').floatingActionButton();
+            })
+        </script>
+        
+        <!-- Custom JS -->
+        <script src="{% static 'extended_materialize.js' %}"></script>
+
+        {% block extra_scripts %}{% endblock extra_scripts %}
+    </body>
+</html>

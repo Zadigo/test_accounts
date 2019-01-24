@@ -8,9 +8,8 @@ from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 
 from accounts.models import MyUser, MyUserProfile
-from shop.models import SpecificCategory
 
-# Registration and administration forms
+
 
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label=_('Password'), widget=forms.PasswordInput)
@@ -98,8 +97,3 @@ class AddressProfileForm(forms.ModelForm):
             'ville': TextInput(attrs={'placeholder': 'Paris'}),
             'code_postal': TextInput(attrs={'placeholder': '59120'})
         }
-
-class PersonalizationProfileForm(forms.ModelForm):
-    class Meta:
-        model   = SpecificCategory
-        fields  = ['specific_category_name']
