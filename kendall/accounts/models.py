@@ -48,7 +48,8 @@ class MyUser(AbstractBaseUser):
 
 
 class MyUserProfile(models.Model):
-    myuser_id           = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    myuser              = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    # avatar              = models.ImageField(verbose_name='Avater', width_field=50, height_field=50)
     stripe_id           = models.CharField(max_length=100, blank=True, null=True)
     date_naissance      = models.DateField(default=timezone.now, blank=True, null=True)
     telephone           = models.CharField(max_length=11, blank=True, null=True)
@@ -65,10 +66,10 @@ class MyUserProfile(models.Model):
 # #####################
 
 class AccountsToken(models.Model):
-    token = models.CharField(default='erzezeuieuo', max_length=15)
-    for_user = models.PositiveIntegerField(blank=True, null=True)
+    token       = models.CharField(default='erzezeuieuo', max_length=15)
+    for_user    = models.PositiveIntegerField(blank=True, null=True)
     expiry_date = models.DateField(default=timezone.now)
-    created_on = models.DateField(auto_now_add=True)
+    created_on  = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.token
@@ -81,4 +82,4 @@ class AccountsToken(models.Model):
 @receiver(post_save, sender=MyUser)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        MyUserProfile.objects.create(myuser_id=instance)
+        MyUserProfile.objects.create(myuser=instance)

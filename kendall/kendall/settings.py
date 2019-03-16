@@ -169,9 +169,9 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '83_e7ujl78tQnKqHosWYMKZ4'
 
 EMAIL_HOST = 'smtp.gmail.com'
 
-EMAIL_HOST_USER = 'contact.kurrikulam@gmail.com'
+EMAIL_HOST_USER = ''
 
-EMAIL_HOST_PASSWORD = 'KendallJenner97170-Kloss'
+EMAIL_HOST_PASSWORD = ''
 
 EMAIL_USE_TLS = True
 
