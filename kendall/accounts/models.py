@@ -20,7 +20,7 @@ class MyUser(AbstractBaseUser):
     nom         = models.CharField(max_length=100, null=True, blank=True)
     prenom      = models.CharField(max_length=100, null=True, blank=True)
     
-    active           = models.BooleanField(default=True)
+    is_active        = models.BooleanField(default=True)
     admin            = models.BooleanField(default=False)
     staff            = models.BooleanField(default=False)
     
@@ -41,7 +41,6 @@ class MyUser(AbstractBaseUser):
     @property
     def is_admin(self):
         return self.staff
-
 
     @property
     def is_staff(self):

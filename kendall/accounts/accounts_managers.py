@@ -17,7 +17,7 @@ class MyUserManager(BaseUserManager):
             nom=nom,
             prenom=prenom,
         )
-
+        
         user.set_password(password)
         user.save(using=self._db)
 

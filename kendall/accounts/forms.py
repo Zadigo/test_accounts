@@ -10,28 +10,28 @@ from django.utils.translation import gettext_lazy as _
 from accounts.models import MyUser, MyUserProfile
 
 
-
 class UserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label=_('Password'), widget=forms.PasswordInput)
-    password2 = forms.CharField(label=_('Password confirmation'), widget=forms.PasswordInput)
+    password1 = CharField(label=_('Password'), widget=PasswordInput)
+    password2 = CharField(label=_('Password confirmation'), widget=PasswordInput)
 
     class Meta:
         model = MyUser
         fields = ('email',)
 
     def clean_password2(self):
-        # Check that the two password entries match
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
 
+        # Vérifier que les deux mots de passe
+        # sont similaire. Oui ? Retourner 
+        # le mot de passe #2
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError(_("Passwords don't match"))
 
         return password2
 
     def save(self, commit=True):
-        # Save the provided password 
-        # in hashed format
+        # Sauvegarder le mot de passe
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
 
@@ -54,11 +54,11 @@ class UserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 class UserLoginForm(AuthenticationForm):
-    username=EmailField(widget=EmailInput(attrs={'placeholder': 'Email professionnel'}))
-    password = forms.CharField(strip=False, widget=PasswordInput(attrs={'placeholder': _('Mot de passe')}))
+    username    = EmailField(widget=EmailInput(attrs={'placeholder': _('Email professionnel')}))
+    password    = CharField(strip=False, widget=PasswordInput(attrs={'placeholder': _('Mot de passe')}))
     
     def clean2(self):
-        email = self.cleaned_data.get('email')
+        email    = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
 
         if email is None and password:

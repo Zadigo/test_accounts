@@ -8,8 +8,8 @@ from accounts.forms import UserChangeForm, UserCreationForm
 
 
 class MyUserAdmin(admin.ModelAdmin):
-    list_display = ('email', 'nom', 'prenom', 'active',)
-    list_filter  = ('active',)
+    list_display = ('email', 'nom', 'prenom', 'is_active',)
+    list_filter  = ('is_active',)
     readonly_fields = ('password',)
     search_fields = ['nom', 'prenom', 'email']
 
