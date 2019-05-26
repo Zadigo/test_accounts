@@ -52,13 +52,14 @@ class MyUserProfile(models.Model):
     # avatar              = models.ImageField(verbose_name='Avater', width_field=50, height_field=50)
     stripe_id           = models.CharField(max_length=100, blank=True, null=True)
     date_naissance      = models.DateField(default=timezone.now, blank=True, null=True)
+    # telephone_validator = RegexValidator(regex=r'\+\d+0?\d+{4, 6}', message='Invalid number')
     telephone           = models.CharField(max_length=11, blank=True, null=True)
     adresse             = models.CharField(max_length=150, blank=True, null=True)
     ville               = models.CharField(max_length=100, blank=True, null=True)
     code_postal         = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return self.myuser_id.email
+        return self.myuser.email
 
 
 # #####################
