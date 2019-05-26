@@ -114,7 +114,7 @@ class ForgotPasswordView(View):
 
     def post(self, request, **kwargs):
         form = PasswordResetForm(request.POST)
-        email = request.POST.get('email')
+        # email = request.POST.get('email')
 
         if form.is_valid():
             user = MyUser.objects.filter(email__iexact=form.cleaned_data['email'])
@@ -155,6 +155,7 @@ class UnauthenticatedChangePasswordView(View):
             form.save()
         login(request, user)
         return redirect('/profile/')
+
 
 # #####################
 #   PROFILE VIEWS
@@ -212,26 +213,26 @@ class ProfileDeleteView(LoginRequiredMixin, View):
         user.delete()
         return redirect('/')
 
-class PersonalisationView(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):
-        context = {
-            'user_profile':self.get_user_profile,
-            'form': PersonalizationProfileForm
-        }
-        return render(request, 'accounts/profile_personalisation.html', context)
+# class PersonalisationView(LoginRequiredMixin, View):
+#     def get(self, request, *args, **kwargs):
+#         context = {
+#             'user_profile':self.get_user_profile,
+#             'form': PersonalizationProfileForm
+#         }
+#         return render(request, 'accounts/profile_personalisation.html', context)
 
-    def post(self, request, **kwargs):
-        user_profile = self.get_user_profile
-        redirect('personalisation')
+#     def post(self, request, **kwargs):
+#         user_profile = self.get_user_profile
+#         redirect('personalisation')
 
-    @property
-    def get_user_profile(self):
-        return MyUserProfile.objects.get(myuser_id_id=self.request.user.id)
+#     @property
+#     def get_user_profile(self):
+#         return MyUserProfile.objects.get(myuser_id_id=self.request.user.id)
 
-def accounts_redirection(request):
-    if request.user.is_authenticated:
-        template_name = '/profile/'
-    else:
-        template_name = '/signup/candidats/'
+# def accounts_redirection(request):
+#     if request.user.is_authenticated:
+#         template_name = '/profile/'
+#     else:
+#         template_name = '/signup/candidats/'
 
-    return redirect(template_name, permanent=False)
+#     return redirect(template_name, permanent=False)

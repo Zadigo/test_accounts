@@ -19,8 +19,8 @@ class UserCreationForm(forms.ModelForm):
         fields = ('email',)
 
     def clean_password2(self):
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
 
         # Vérifier que les deux mots de passe
         # sont similaire. Oui ? Retourner 
@@ -33,7 +33,7 @@ class UserCreationForm(forms.ModelForm):
     def save(self, commit=True):
         # Sauvegarder le mot de passe
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
+        user.set_password(self.cleaned_data['password1'])
 
         if commit:
             user.save()
