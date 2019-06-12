@@ -104,6 +104,9 @@ class ChangePasswordView(LoginRequiredMixin, View):
 
 
 class ForgotPasswordView(View):
+    """This class helps the user reset his password 
+    when he has difficulties authenticating
+    """
     def get(self, request, *args, **kwargs):
         context = {
             'form': PasswordResetForm,
@@ -113,11 +116,12 @@ class ForgotPasswordView(View):
         return render(request, 'registration/forgot_password.html', context)
 
     def post(self, request, **kwargs):
+        # Get the POST request
         form = PasswordResetForm(request.POST)
-        # email = request.POST.get('email')
 
         if form.is_valid():
-            user = MyUser.objects.filter(email__iexact=form.cleaned_data['email'])
+            email = form.cleaned_data['email']
+            user = MyUser.objects.filter(email__iexact=email)
             if user.exists():
                 # NOTE: Change to append a token to the url
                 # which will help iD the user in the confirm view
@@ -129,8 +133,7 @@ class ForgotPasswordView(View):
                     'form': PasswordResetForm,
                     'form_button_registration': _('Nouveau mot de passe')
                 }
-                return render(request, 'registration/forgot_password.html', 
-                                context=context)
+                return render(request, 'registration/forgot_password.html', context=context)
 
         return redirect('login')
 
@@ -205,11 +208,25 @@ class ProfileView(LoginRequiredMixin, View):
 
 
 class ProfileDataView(LoginRequiredMixin, View):
+    """Help the user manage his data
+    """
     def get(self, request, *args, **kwargs):
-        return render(request, 'accounts/profile_data.html')
+        current_user = self.request.user
+
+        # Query the social_auth database and
+        # get a set of connected accounts
+        user = self.request.user.social_auth.get(uid=current_user.email)
+        if user:
+            context = {
+                'provider': user.provider
+            }
+
+        return render(request, 'accounts/profile_data.html', context)
 
 
 class ProfileDeleteView(LoginRequiredMixin, View):
+    """Help the user delete his account
+    """
     def get(self, request, *args, **kwargs):
         user = get_object_or_404(MyUser, id=request.user.id)
         user.delete()
@@ -230,11 +247,3 @@ class ProfileDeleteView(LoginRequiredMixin, View):
 #     @property
 #     def get_user_profile(self):
 #         return MyUserProfile.objects.get(myuser_id_id=self.request.user.id)
-
-# def accounts_redirection(request):
-#     if request.user.is_authenticated:
-#         template_name = '/profile/'
-#     else:
-#         template_name = '/signup/candidats/'
-
-#     return redirect(template_name, permanent=False)

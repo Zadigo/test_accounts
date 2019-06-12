@@ -15,8 +15,8 @@ class MyUserAdmin(admin.ModelAdmin):
 
 class MyUserProfileAdmin(admin.ModelAdmin):
     actions      = ('activer_compte', 'desactiver_compte',)
-    list_display = ('myuser_id', 'telephone',)
-    search_fields = ['myuser_id__nom', 'myuser_id__prenom', 'myuser_id__email']
+    list_display = ('myuser', 'telephone',)
+    search_fields = ['myuser__nom', 'myuser__prenom', 'myuser__email']
 
     def activer_compte(self, request, queryset):
         queryset.update(actif=True)

@@ -16,8 +16,8 @@
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
     {% if user.is_admin or user.is_staff %}
-        <li><a href="/admin/" id="link-profil">{% trans 'Admin' %}</a></li>
-        <li><a href="/dashboard/" id="link-profil">{% trans 'Dashboard' %}</a></li>
+        <li><a href="/admin/" id="link-profil" target="_blank">{% trans 'Admin' %}</a></li>
+        <li><a href="/dashboard/" id="link-profil" target="_blank">{% trans 'Dashboard' %}</a></li>
     {% endif %}
         <li><a href="{% url 'profile' %}" id="link-profil">{% trans 'Profil' %}</a></li>
         <li class="divider"></li>

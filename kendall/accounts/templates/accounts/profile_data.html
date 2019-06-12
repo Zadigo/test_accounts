@@ -1,6 +1,6 @@
 {% extends "accounts/base_profile.html" %}
 {% load i18n %}
-{% block title %}{% trans 'Mes données' %}{% endblock %}
+{% block title %}{% trans "Mes données" %}{% endblock %}
 {% block profile_content %}
     <div class="card-panel">
         <p>
@@ -8,9 +8,13 @@
                 Gérer les comptes connectés avec Kurrikulam :
             {% endblocktrans %}
         </p>
-        <a href="" class="btn disabled"><i class="fab fa-google left"></i>Google</a>
-        <a href="" class="btn disabled"><i class="fab fa-twitter left"></i>Twitter</a>
-        <a href="" class="btn disabled"><i class="fab fa-linkedin left"></i>LinkedIn</a>
+        <a href="#!" class="btn {% if provider != 'google-oauth2' %}
+                                    disabled
+                                {% endif %}">
+            <i class="fab fa-google left"></i>Google
+        </a>
+        <a href="#!" class="btn disabled"><i class="fab fa-twitter left"></i>Twitter</a>
+        <a href="#!" class="btn disabled"><i class="fab fa-linkedin left"></i>LinkedIn</a>
     </div>
 
     <div class="card-panel">
