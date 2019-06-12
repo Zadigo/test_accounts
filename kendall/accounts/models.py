@@ -16,6 +16,8 @@ from accounts.accounts_managers import MyUserManager
 # #####################
 
 class MyUser(AbstractBaseUser):
+    """Base user model
+    """
     email       = models.EmailField(verbose_name=_('Addresse email'), max_length=255, unique=True,)
     nom         = models.CharField(max_length=100, null=True, blank=True)
     prenom      = models.CharField(max_length=100, null=True, blank=True)
@@ -46,8 +48,9 @@ class MyUser(AbstractBaseUser):
     def is_staff(self):
         return self.staff
 
-
 class MyUserProfile(models.Model):
+    """Base user profile model
+    """
     myuser              = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     # avatar              = models.ImageField(verbose_name='Avater', width_field=50, height_field=50)
     stripe_id           = models.CharField(max_length=100, blank=True, null=True)

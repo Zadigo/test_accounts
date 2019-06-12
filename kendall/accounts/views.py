@@ -164,7 +164,7 @@ class UnauthenticatedChangePasswordView(View):
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user = get_object_or_404(MyUser, id=request.user.id)
-        profile = user.myuserprofile_set.get(myuser_id_id=request.user.id)
+        profile = user.myuserprofile_set.get(myuser=request.user.id)
 
         context = {
             'base_profile_form': BaseProfileForm(
@@ -203,9 +203,11 @@ class ProfileView(LoginRequiredMixin, View):
 
         return redirect('/profile/')
 
+
 class ProfileDataView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         return render(request, 'accounts/profile_data.html')
+
 
 class ProfileDeleteView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):

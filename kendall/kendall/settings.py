@@ -81,8 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'test_acc1',
-        'USER': 'postgres',
-        'PASSWORD': 'Constance97170',
+        'USER': 'test_account',
+        'PASSWORD': 'test_acc',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -127,6 +127,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+
+# AUTHENTICATION BACKENDS
+
 AUTH_USER_MODEL = 'accounts.MyUser'
 
 AUTHENTICATION_BACKENDS = (
@@ -139,6 +146,9 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.linkedin.LinkedinOAuth2',
     'accounts.backends.EmailAuthenticationBackend'
 )
+
+
+# SOCIAL DJANGO
 
 LOGIN_URL = 'login'
 
