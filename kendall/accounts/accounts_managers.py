@@ -12,6 +12,8 @@ from django.contrib.auth.models import GroupManager
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, nom=None, prenom=None, username=None, password=None):
+        """Create a basic user for your application.
+        """
         if not email:
             raise ValueError(_("L'addresse mail est obligatoire"))
 
@@ -43,6 +45,8 @@ class MyUserManager(BaseUserManager):
     #     return user
 
     def create_superuser(self, email, password, nom=None, prenom=None):
+        """Create a superuser of type administrator
+        """
         user = self.create_user(
             email,
             password=password,

@@ -1,10 +1,9 @@
 from django.contrib import admin
-from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from accounts.models import MyUser, MyUserProfile, AccountsToken
+from django.contrib.auth.models import Group
+
 from accounts.forms import UserChangeForm, UserCreationForm
-
-
+from accounts.models import AccountsToken, MyUser, MyUserProfile
 
 
 class MyUserAdmin(admin.ModelAdmin):

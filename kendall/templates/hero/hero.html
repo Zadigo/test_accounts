@@ -10,11 +10,11 @@
     <div class="hero">
         <div class="hero-wrapper">
             <div class="call-to-action">
-                <div class="lead-stronger">{% trans "Achetez les meilleurs produits" %}</div>
+                <div class="lead-stronger">{% trans "Authentication with Django" %}</div>
                 <div class="lead-subtitle">
                     {% trans "Le prêt à porter de marques" %}
                     <div class="lead-button">
-                        <a href="{ url 'products_stock' }" class="btn-large">{% trans "Acheter" %}</a>
+                        <a href="{% url 'login' %}" class="btn-large">{% trans "Login" %}</a>
                     </div>
                 </div>
             </div>
