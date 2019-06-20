@@ -74,17 +74,17 @@ class LoginView(View):
 
         if user:
             login(request, user)
-            return redirect(request.GET.get('next') or '/')
+            return redirect(request.GET.get('next') or 'home')
 
         else:
             add_message(request, messages.WARNING, message=_("Nous n'arrivons pas à vous connectez"))
-            return redirect('/login/')
+            return redirect('home')
 
 
 class LogoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
-        return redirect('/login/')
+        return redirect('home')
 
 
 class ChangePasswordView(LoginRequiredMixin, View):

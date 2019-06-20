@@ -1,9 +1,10 @@
 {% extends "registration/base_registrations.html" %}
 {% load i18n %}
+
 {% block title %}{% trans "Se connecter" %}{% endblock title %}
 
 {% block registration_form %}
-    {% include "../components/registration_form.html" %}
+    {% include "../components/registration_form.html" with form_id="login_form" %}
 {% endblock registration_form %}
 
 {% block extra_registration_links %}
