@@ -34,6 +34,7 @@ from accounts.models import AccountsToken, MyUser, MyUserProfile
 class SignupView(View):
     def get(self, request, *args, **kwargs):
         context = {
+            'consent': True,
             'form': UserSignupForm,
             'form_button_registration': _("S'enregistrer")
         }

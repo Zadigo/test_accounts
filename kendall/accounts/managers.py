@@ -1,10 +1,6 @@
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import BaseUserManager, GroupManager
 from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import GroupManager
-
-
-
 
 # #####################
 #   ACCOUNTS MANAGER
@@ -58,4 +54,3 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         
         return user
-        

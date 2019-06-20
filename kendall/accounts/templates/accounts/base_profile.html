@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 {% load i18n static %}
-{% block title %}{% trans 'Mon compte' %}{% endblock %}
+
+{% block title %}{% trans "Mon compte" %}{% endblock %}
+
 {% block body %}
     <section class="section">
         <div class="row">
             
             {% block profile_content_one %}
                 <div class="col s12 l4">
+                    <!-- SIDE MENU -->
                     {% include "accounts/side_menu.html" %}
                 </div>
 
                 <div class="col s12 l8">
-                    {% block profile_content %}
-                    
-                    {% endblock profile_content %}
+                    {% block profile_content %}{% endblock profile_content %}
                 </div>
             {% endblock profile_content_one %}
         </div>

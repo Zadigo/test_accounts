@@ -1,0 +1,19 @@
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="input-field">
+            {{ field }}
+        </div>
+    {% endfor %}
+    
+    {% if consent %}
+        <p>
+            <label id="_cgu">
+                <input type="checkbox" class="filled-in">
+                <span>Vous consentez à suivre nos <a href="{ url 'cgu' }">CGU</a></span>
+            </label>
+        </p>
+    {% endif %}
+
+    <button type="submit" class="btn">{{ form_button_registration }}</button>
+</form>

@@ -1,15 +1,13 @@
-from django.db import models
-from django.db.models.signals import post_save, pre_save
 from django.contrib.auth.models import AbstractBaseUser
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
+from django.db import models
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from accounts.accounts_managers import MyUserManager
 
-
-
+from accounts.managers import MyUserManager
 
 # #####################
 #       USER MODEL

@@ -1,19 +1,10 @@
 {% extends "registration/base_registrations.html" %}
 {% load i18n %}
-{% block title %}{% trans 'Créer un compte' %}{% endblock title %}
+
+{% block title %}{% trans "Créer un compte" %}{% endblock title %}
 
 {% block registration_form %}
-    {% for field in form %}
-        <div class="input-field">
-            {{ field }}
-        </div>
-    {% endfor %}
-    <p>
-        <label id="_cgu">
-            <input type="checkbox" class="filled-in">
-            <span>Vous consentez à suivre nos <a href="{ url 'cgu' }">CGU</a></span>
-        </label>
-    </p>
+    {% include "../components/registration_form.html" %}
 {% endblock registration_form %}
 
 
