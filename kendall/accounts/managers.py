@@ -2,10 +2,6 @@ from django.contrib.auth.models import BaseUserManager, GroupManager
 from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 
-# #####################
-#   ACCOUNTS MANAGER
-# #####################
-
 class MyUserManager(BaseUserManager):
     def create_user(self, email, nom=None, prenom=None, username=None, password=None):
         """Create a basic user for your application.
@@ -13,11 +9,8 @@ class MyUserManager(BaseUserManager):
         if not email:
             raise ValueError(_("L'addresse mail est obligatoire"))
 
-        user = self.model(
-            email=self.normalize_email(email),
-            nom=nom,
-            prenom=prenom,
-        )
+        email = self.normalize_email(email)
+        user = self.model(email=email, nom=nom, prenom=prenom)
         
         user.set_password(password)
         user.save(using=self._db)
@@ -43,12 +36,7 @@ class MyUserManager(BaseUserManager):
     def create_superuser(self, email, password, nom=None, prenom=None):
         """Create a superuser of type administrator
         """
-        user = self.create_user(
-            email,
-            password=password,
-            nom=nom,
-            prenom=prenom,
-        )
+        user = self.create_user(email, password=password, nom=nom, prenom=prenom)
         user.admin = True
         user.staff = True
         user.save(using=self._db)

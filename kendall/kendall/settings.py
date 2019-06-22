@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import datetime
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'rest_framework',
+    'rest_framework.authtoken',
     'social_django',
     'accounts'
 ]
@@ -131,6 +136,47 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = 'media'
+
+
+# CORS
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST  = [
+    'http://localhost:8080'
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = default_headers + (
+    'Access-Control-Allow-Origin',
+    'Access-Control-Allow-Headers'
+)
+
+
+# JWT AUTHENTICATION
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+}
+
+
+# REST FRAMEWORK
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
 
 # AUTHENTICATION BACKENDS
 
@@ -176,12 +222,13 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='246747097226-7gc2su239ju860s2tfld9bgsnlth5ts1.ap
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '83_e7ujl78tQnKqHosWYMKZ4'
 
 
+# GMAIL
 
 EMAIL_HOST = 'smtp.gmail.com'
 
-EMAIL_HOST_USER = ''
+EMAIL_HOST_USER = 'contact.kurrikulam@gmail.com'
 
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'KendallJenner97170-KlossyKarlie'
 
 EMAIL_USE_TLS = True
 

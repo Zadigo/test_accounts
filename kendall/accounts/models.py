@@ -6,6 +6,7 @@ from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from rest_framework.authtoken.models import Token
 
 from accounts.managers import MyUserManager
 
@@ -85,3 +86,4 @@ class AccountsToken(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         MyUserProfile.objects.create(myuser=instance)
+        Token.objects.create(user=instance)

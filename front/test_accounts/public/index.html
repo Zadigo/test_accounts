@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <meta name="description" content="Achetez des prouits locaux et originaux
+    à moindre coût grâce à notre plate-forme ecommerce.">
+
+    <meta name="author" content="Bwaloca">
+
+    <meta name="theme-color" content="#0d47a1"/>
+
+    <meta name="twitter:card" content="Site ecommerce de vente de produits locaux" />
+    <meta name="twitter:site" content="@bwaloca" />
+    <meta name="twitter:creator" content="@bwaloca" />
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bwaloca : Le local à portée de main" />
+    <meta property="og:description" content="Achetez des prouits locaux et originaux
+    à moindre coût grâce à notre plate-forme ecommerce." />
+    <meta property="og:image" content="./banner1.jpg" />
+    <meta property="og:image:alt" content="Bwaloca : Le local à portée de main" />
+
+
+    <title>Bwaloca : Le local à portée de main</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <!-- FAVICON -->
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+
+    <link rel="alternate" href="bwaloca.com" hreflang="fr-fr" />
+
+    <link rel="stylesheet" href="./extended_materialize.css">
+    <link rel="stylesheet" href="./hero.css">
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        // Sidenav
+        $('.sidenav').sidenav({'draggable': true});
+        // dropdown
+        $(".dropdown-trigger").dropdown();
+        // select
+        $('select').formSelect();
+        // datepicker
+        $('.datepicker').datepicker();
+        // Timepicker
+        $('.timepicker').timepicker();
+        // modal
+        $('.modal').modal();
+        // Tooltips
+        $('.tooltipped').tooltip();
+        // Action button
+        $('.fixed-action-btn').floatingActionButton();
+        // Collapsible
+        $('.collapsible').collapsible();
+        // Tabs
+        $('.tabs').tabs();
+        // Scrollspy
+        $('.scrollspy').scrollSpy();
+      });
+    </script>
+  </body>
+</html>
