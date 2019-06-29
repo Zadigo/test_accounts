@@ -63,14 +63,18 @@ export default {
                  "email": "zadigo@gmail.com",
                  "password": "touparet"
             }
+
+            // axios.defaults.headers['Origin'] = "http://localhost:8080/login"
+            axios.defaults.headers['Accept'] = "application/json"
+            axios.defaults.headers['Content-Type'] = "application/json"
+
             // axios.defaults.headers['Access-Control-Request-Headers']='Origin'
             axios.post(this.$store.state.endpoints.obtainJWT, data)
                 .then((response) => {
                     this.$store.commit('updateToken', response.data.token)
 
                     var headers = {
-                        Authorization: `JWT ${this.$store.state.jwt}`,
-                        "Content-Type": "application/json"
+                        "Authorization": `JWT ${this.$store.state.jwt}`,
                     }
 
                     this.$router.push('home')

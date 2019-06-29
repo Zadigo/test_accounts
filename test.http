@@ -18,8 +18,8 @@
 # }
 
 # GET Access data in protected views (JWT)
-GET http://127.0.0.1:8000/api/v1/users/ HTTP/1.1
-Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InphZGlnb0BnbWFpbC5jb20iLCJleHAiOjE1NjExNTcwMDAsImVtYWlsIjoiemFkaWdvQGdtYWlsLmNvbSIsIm9yaWdfaWF0IjoxNTYxMTUzNDAwfQ.kl7FJ1RpZWAWU0ti3l04nGVfT-Aq6DyBOdyUNCzVH6o
+# GET http://127.0.0.1:8000/api/v1/users/ HTTP/1.1
+# Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InphZGlnb0BnbWFpbC5jb20iLCJleHAiOjE1NjExNTcwMDAsImVtYWlsIjoiemFkaWdvQGdtYWlsLmNvbSIsIm9yaWdfaWF0IjoxNTYxMTUzNDAwfQ.kl7FJ1RpZWAWU0ti3l04nGVfT-Aq6DyBOdyUNCzVH6o
 
 # GET Refresh Token (JWT)
 # POST http://127.0.0.1:8000/api/v1/auth/obtain-token/ HTTP/1.1
@@ -29,3 +29,5 @@ Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2Vy
 #     "email": "zadigo@gmail.com",
 #     "password": "touparet"
 # }
+
+OPTIONS http://127.0.0.1:8000/api/v1/auth/obtain-token/
