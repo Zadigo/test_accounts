@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'social_django',
-    'accounts'
+    'accounts',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -190,9 +191,9 @@ LOGOUT_URL = 'logout'
 
 LOGIN_REDIRECT_URL = 'profile'
 
-SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = ''
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '78b4hm4q51ep8h'
 
-SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET  = ''
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET  = 'VLkvO0P7JTJacuDd'
 
 SOCIAL_AUTH_LINKEDIN_SCOPE = ['r_basicprofile', 'r_emailaddress']
 
@@ -205,18 +206,18 @@ SOCIAL_AUTH_LINKEDIN_EXTRA_DATA = [('id', 'id'),
                                    ('headline', 'headline'),
                                    ('industry', 'industry')]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY =''
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='246747097226-7gc2su239ju860s2tfld9bgsnlth5ts1.apps.googleusercontent.com'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '83_e7ujl78tQnKqHosWYMKZ4'
 
 
 # GMAIL
 
 EMAIL_HOST = 'smtp.gmail.com'
 
-EMAIL_HOST_USER = ''
+EMAIL_HOST_USER = 'contact.kurrikulam@gmail.com'
 
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'KendallJenner97170-KlossyKarlie'
 
 EMAIL_USE_TLS = True
 
