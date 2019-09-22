@@ -24,7 +24,7 @@ class SignupView(View):
             'form': UserSignupForm,
             'form_button_registration': _("S'enregistrer")
         }
-        return render(request, 'registration/signup.html', context)
+        return render(request, 'registration/pages/signup.html', context)
 
     def post(self, request, **kwargs):
         nom = request.POST['nom']
@@ -51,7 +51,7 @@ class LoginView(View):
             'form': UserLoginForm,
             'form_button_registration': _('Se connecter')
         }
-        return render(request, 'registration/login.html', context)
+        return render(request, 'registration/pages/login.html', context)
 
     def post(self, request, **kwargs):
         email       = request.POST['username']
@@ -83,7 +83,7 @@ class ForgotPasswordView(View):
             'form_button_registration': _('Nouveau mot de passe')
         }
 
-        return render(request, 'registration/forgot_password.html', context)
+        return render(request, 'registration/pages/forgot_password.html', context)
 
     def post(self, request, **kwargs):
         # Get the POST request
@@ -103,7 +103,7 @@ class ForgotPasswordView(View):
                     'form': PasswordResetForm,
                     'form_button_registration': _('Nouveau mot de passe')
                 }
-                return render(request, 'registration/forgot_password.html', context=context)
+                return render(request, 'registration/pages/forgot_password.html', context=context)
 
         return redirect('login')
 
@@ -118,7 +118,7 @@ class UnauthenticatedChangePasswordView(View):
             'form': SetPasswordForm(MyUser.objects.get(id=1)),
             'form_button_registration': _('Modifier')
         }
-        return render(request, 'registration/forgot_password_confirm.html', context)
+        return render(request, 'registration/pages/forgot_password_confirm.html', context)
 
     def post(self, request, **kwargs):
         user_token = request.GET.get('user_token')

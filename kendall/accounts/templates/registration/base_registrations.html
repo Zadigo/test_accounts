@@ -4,7 +4,7 @@
     <section class="section">
         <!-- SOCIAL REGISTRATION -->
         {% if request.path == "/accounts/login/" or request.path == "/accounts/signup/" %}
-                {% include "registration/social.html" %}
+                {% include "registration/components/social.html" %}
         {% endif %}
 
         <div class="row">
