@@ -11,7 +11,7 @@ export default new Vuex.Store({
     endpoints: {
       obtainJWT: 'http://127.0.0.1:8000/api/v1/auth/obtain-token/',
       refreshJWT: 'http://127.0.0.1:8000/api/v1/auth/refresh-token/',
-      baseUrl: 'http://127.0.0.1:8000/api/v1/'
+      baseURL: 'http://127.0.0.1:8000/api/v1/'
     }
   },
   
@@ -36,7 +36,20 @@ export default new Vuex.Store({
       state.jwt = null;
     }
   },
-  actions: {
 
+  actions: {
+    obtainToken(email, password) {
+      const credentials = {
+        email: email,
+        password: password
+      }
+      axios.post(this.state.endpoints.obtainJWT, credentials)
+        .then((response) => {
+          this.commit('updateToken', response.data.token)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   }
 })

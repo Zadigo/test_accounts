@@ -6,11 +6,7 @@
         {% endif %}
 
         <!-- FORM -->
-        <FormItem 
-            v-on:receiveEmit="runThat"
-            v-bind:inputs="inputs" 
-            v-bind:button_name="button_name">
-        </FormItem>
+        <LoginForm v-on:loginUser="authenticate" />
 
         <div class="row">
             <div class="col s12 l5 offset-l3">
@@ -22,67 +18,52 @@
 </template>
 
 <script>
-import FormItem from '@/components/registration/Form.vue'
+import LoginForm from '@/components/registration/LoginForm.vue'
 import axios from 'axios'
 
 export default {
     components:{
-        FormItem
+        LoginForm
     },
 
     data() {
         return {
-            inputs: [],
-            button_name: ''
+            
         }
     },
 
-    created() {
-        this.$data.inputs = [
-            {
-                id: 1,
-                type: 'email',
-                name: 'email'
-            },
-            {
-                id: 2,
-                type: 'password',
-                name: 'password'
-            }
-        ]
-        this.$data.button_name = "Se connecter"
-    },
+    // created() {
+    //     this.$data.inputs = [
+    //         {
+    //             id: 1,
+    //             type: 'email',
+    //             name: 'email'
+    //         },
+    //         {
+    //             id: 2,
+    //             type: 'password',
+    //             name: 'password'
+    //         }
+    //     ]
+    //     this.$data.button_name = "Se connecter"
+    // },
 
     methods: {
-        runThat: function(text) {
-            console.log(text)
-        },
+        authenticate: function(credentials) {
+            var tokenURL = this.$store.state.endpoints.obtainJWT
 
-        authenticate: function(data) {
-            data={
-                 "email": "zadigo@gmail.com",
-                 "password": "touparet"
-            }
-
-            // axios.defaults.headers['Origin'] = "http://localhost:8080/login"
-            axios.defaults.headers['Accept'] = "application/json"
-            axios.defaults.headers['Content-Type'] = "application/json"
-
-            // axios.defaults.headers['Access-Control-Request-Headers']='Origin'
-            axios.post(this.$store.state.endpoints.obtainJWT, data)
+            axios.post(tokenURL, credentials)
                 .then((response) => {
                     this.$store.commit('updateToken', response.data.token)
 
-                    var headers = {
-                        "Authorization": `JWT ${this.$store.state.jwt}`,
-                    }
+                    // var headers = {
+                    //     "Authorization": `JWT ${this.$store.state.jwt}`,
+                    // }
 
                     this.$router.push('home')
                 })
                 .catch((error) => {
-                    console.log(error);
-                    console.debug(error);
-                    console.dir(error);
+                    
                 })
         }
     }

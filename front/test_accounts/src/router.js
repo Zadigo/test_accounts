@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Profile from './views/account/profile/Profile.vue'
 import Login from './views/registration/Login.vue'
 import Signup from './views/registration/Signup.vue'
-import PasswordChange from './views/account/PasswordChange.vue'
-import AccountDetails from './views/account/AccountDetails.vue'
-import AddressBook from './views/account/AddressBook.vue'
-import MyOrders from './views/account/MyOrders.vue'
+import MyData from './views/account/profile/MyData.vue'
+import PaymentMethods from './views/account/profile/PaymentMethods.vue'
+import PasswordChange from './views/account/profile/PasswordChange.vue'
+// import AccountDetails from './views/account/AccountDetails.vue'
+// import AddressBook from './views/account/AddressBook.vue'
+// import MyOrders from './views/account/MyOrders.vue'
 
 Vue.use(Router)
 
@@ -40,35 +43,51 @@ export default new Router({
       component: Signup
     },
     {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
+      meta: {
+        title: 'profile',
+        metaTags: {
+          name: 'profile'
+        }
+      }
+    },
+    {
+      path: '/accounts/my-data',
+      name: 'mydata',
+      component: MyData
+    },
+    {
       path: '/account/password-change',
       name: 'password_change',
       component: PasswordChange
     },
-    {
-      path: '/account/details',
-      name: 'account_details',
-      component: AccountDetails
-    },
-    {
-      path: '/account/address-book',
-      name: 'address_book',
-      component: AddressBook
-    },
-    {
-      path: '/account/social',
-      name: 'social_accounts',
-      component: AddressBook
-    },
-    {
-      path: '/account/my-orders',
-      name: 'my_orders',
-      component: MyOrders
-    },
-    ,
+    // {
+    //   path: '/account/details',
+    //   name: 'account_details',
+    //   component: AccountDetails
+    // },
+    // {
+    //   path: '/account/address-book',
+    //   name: 'address_book',
+    //   component: AddressBook
+    // },
+    // {
+    //   path: '/account/social',
+    //   name: 'social_accounts',
+    //   component: AddressBook
+    // },
+    // {
+    //   path: '/account/my-orders',
+    //   name: 'my_orders',
+    //   component: MyOrders
+    // },
+    // ,
     {
       path: '/account/payment-methods',
       name: 'payment_methods',
-      component: MyOrders
+      component: PaymentMethods
     }
   ]
 })
