@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 
 from accounts import views as registration_views
-import views_profile
+from accounts import views_profile
 
 urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace='social')),

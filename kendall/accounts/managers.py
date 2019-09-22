@@ -1,8 +1,12 @@
 from django.contrib.auth.models import BaseUserManager, GroupManager
 from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
+from django.db.models import QuerySet
+
 
 class MyUserManager(BaseUserManager):
+    """Base manager for creating users"""
+
     def create_user(self, email, nom=None, prenom=None, username=None, password=None):
         """Create a basic user for your application.
         """
@@ -42,3 +46,9 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         
         return user
+
+class UserProfileManager(QuerySet):
+    def related_user(self, user):
+        """Get the related user
+        """
+        return self.select_related('myuser').get(myuser=user)

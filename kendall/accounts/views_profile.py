@@ -3,6 +3,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import gettext
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import View
 
 from accounts.forms import AddressProfileForm, BaseProfileForm
@@ -11,21 +13,25 @@ from accounts.models import MyUser, MyUserProfile
 
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        user = get_object_or_404(MyUser, id=request.user.id)
-        profile = user.myuserprofile_set.get(myuser=request.user.id)
+        user = MyUserProfile.profile.related_user(request.user)
+        if not user:
+            raise Http404()
+
+        # user = get_object_or_404(MyUser, id=request.user.id)
+        # profile = user.myuserprofile_set.get(myuser=user)
 
         context = {
             'base_profile_form': BaseProfileForm(
                 initial = {
-                    'nom': user.nom,
-                    'prenom': user.prenom
+                    'nom': user.myuser.nom,
+                    'prenom': user.myuser.prenom
                 }
             ),
             'address_profile_form': AddressProfileForm(
                 initial = {
-                    'adresse': profile.adresse,
-                    'ville': profile.ville,
-                    'code_postal': profile.code_postal
+                    'adresse': user.adresse,
+                    'ville': user.ville,
+                    'code_postal': user.code_postal
                 }
             )
         }
@@ -35,21 +41,19 @@ class ProfileView(LoginRequiredMixin, View):
     def post(self, request, **kwargs):
         # USING AJAX
 
-        user_id = request.user
-        user = MyUser.objects.get(id=user_id.id)
-        user_profile = user.myuserprofile_set.get(myuser_id_id=user_id.id)
+        user = MyUserProfile.profile.related_user(request.user)
 
         form_id = request.POST.get('form_id')
         if form_id == 'base-profile-form':
-            form = BaseProfileForm(request.POST, instance=user)
+            form = BaseProfileForm(request.POST, instance=user.myuser)
 
         if form_id == 'address-profile-form':
-            form = AddressProfileForm(request.POST, instance=user_profile)
+            form = AddressProfileForm(request.POST, instance=user)
 
         if form.is_valid():
             form.save()
 
-        return redirect('/profile/')
+        return JsonResponse({'success': 'success'})
 
 
 class ChangePasswordView(LoginRequiredMixin, View):

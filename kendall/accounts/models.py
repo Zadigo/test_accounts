@@ -8,7 +8,8 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from rest_framework.authtoken.models import Token
 
-from accounts.managers import MyUserManager
+from accounts.managers import MyUserManager, UserProfileManager
+
 
 # #####################
 #       USER MODEL
@@ -59,6 +60,9 @@ class MyUserProfile(models.Model):
     adresse             = models.CharField(max_length=150, blank=True, null=True)
     ville               = models.CharField(max_length=100, blank=True, null=True)
     code_postal         = models.IntegerField(blank=True, null=True)
+
+    objects     = models.Manager()
+    profile     = UserProfileManager.as_manager()
 
     def __str__(self):
         return self.myuser.email
