@@ -6,6 +6,7 @@ from accounts import views
 
 urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^profile/payment-methods/$', views.PaymentMethodsView.as_view(), name='payment_methods'),
     # url(r'^profile/personalisation/$', views.PersonalisationView.as_view(), name='personalisation'),
     url(r'^profile/delete/$', views.ProfileDeleteView.as_view(), name='delete_account'),
     url(r'^profile/data/$', views.ProfileDataView.as_view(), name='profile_data'),

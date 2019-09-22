@@ -233,6 +233,30 @@ class ProfileDeleteView(LoginRequiredMixin, View):
         user.delete()
         return redirect('/')
 
+class PaymentMethodsView(LoginRequiredMixin, View):
+    """Allows the customer to update his/her payment method"""
+    
+    def get(self, request, *args, **kwargs):
+        return render(request, 'accounts/payment_methods.html', {})
+
+    def post(self, request, *kwargs):
+        try:
+            import stripe
+        except ImportError:
+            raise Http404('An error has occured')
+        else:
+            # We can update the customer's cards here
+            # using the stripe api
+            params = {
+                'source': 'source'
+            }
+            stripe.Customer.update(**params)
+        finally:
+            response = {
+                'status': ''
+            }
+        return JsonResponse(response)
+
 # class PersonalisationView(LoginRequiredMixin, View):
 #     def get(self, request, *args, **kwargs):
 #         context = {
