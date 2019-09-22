@@ -7,6 +7,7 @@ import Signup from './views/registration/Signup.vue'
 import MyData from './views/account/profile/MyData.vue'
 import PaymentMethods from './views/account/profile/PaymentMethods.vue'
 import PasswordChange from './views/account/profile/PasswordChange.vue'
+import Cart from './views/cart/Cart.vue'
 // import AccountDetails from './views/account/AccountDetails.vue'
 // import AddressBook from './views/account/AddressBook.vue'
 // import MyOrders from './views/account/MyOrders.vue'
@@ -88,6 +89,16 @@ export default new Router({
       path: '/account/payment-methods',
       name: 'payment_methods',
       component: PaymentMethods
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: Cart
+    },
+    {
+      path: 'cart/payment',
+      name: 'cart',
+      component: Cart
     }
   ]
 })
