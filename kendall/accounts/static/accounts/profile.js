@@ -7,7 +7,7 @@ $(document).ready(function() {
 
         var data = $(this).serialize();
         var form_id = '&form_id=' + $(this).attr('id');
-
+        
         $.ajax({
             type: "POST",
             url: uri,

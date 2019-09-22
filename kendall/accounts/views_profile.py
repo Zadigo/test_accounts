@@ -36,13 +36,13 @@ class ProfileView(LoginRequiredMixin, View):
             )
         }
 
-        return render(request, 'accounts/profile_profile.html', context)
+        return render(request, 'accounts/pages/profile.html', context)
 
     def post(self, request, **kwargs):
-        # USING AJAX
+        # AJAX
 
         user = MyUserProfile.profile.related_user(request.user)
-
+        
         form_id = request.POST.get('form_id')
         if form_id == 'base-profile-form':
             form = BaseProfileForm(request.POST, instance=user.myuser)
@@ -50,10 +50,14 @@ class ProfileView(LoginRequiredMixin, View):
         if form_id == 'address-profile-form':
             form = AddressProfileForm(request.POST, instance=user)
 
-        if form.is_valid():
-            form.save()
+        if form:
+            if form.is_valid():
+                form.save()
+                response = {'status': 'success'}
+        else:
+            response = {'status': 'error'}
 
-        return JsonResponse({'success': 'success'})
+        return JsonResponse(response)
 
 
 class ChangePasswordView(LoginRequiredMixin, View):
@@ -62,7 +66,7 @@ class ChangePasswordView(LoginRequiredMixin, View):
             'form': PasswordChangeForm(request.user),
             'form_button_registration': _('Modifier')
         }
-        return render(request, 'accounts/profile_password_reset.html', context)
+        return render(request, 'accounts/pages/password_reset.html', context)
 
     def post(self, request, **kwargs):
         form = PasswordChangeForm(request.user, request.POST)
@@ -93,7 +97,7 @@ class ProfileDataView(LoginRequiredMixin, View):
         except Exception:
             context = {}
 
-        return render(request, 'accounts/profile_data.html', context)
+        return render(request, 'accounts/pages/data.html', context)
 
 
 class ProfileDeleteView(LoginRequiredMixin, View):
@@ -109,7 +113,7 @@ class PaymentMethodsView(LoginRequiredMixin, View):
     """Allows the customer to update his/her payment method"""
     
     def get(self, request, *args, **kwargs):
-        return render(request, 'accounts/payment_methods.html', {})
+        return render(request, 'accounts/pages/payment_methods.html', {})
 
     def post(self, request, *kwargs):
         try:

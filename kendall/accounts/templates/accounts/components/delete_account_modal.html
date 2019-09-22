@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>{% trans 'Suppréssion de votre compte' %}</h4>
+        <p>
+            {% blocktrans %}
+                Vous êtes sur le point de supprimer votre compte. Cette étape
+                est irréversible et vous perdrez donc toutes les données liées à Kurrikulam.
+            {% endblocktrans %}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a href="{% url 'delete_account' %}" class="modal-close waves-effect waves-green btn-flat">{% trans 'supprimer' %}</a>
+    </div>
+</div>
