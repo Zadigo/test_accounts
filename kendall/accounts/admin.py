@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
 
 from accounts.forms import UserChangeForm, UserCreationForm
-from accounts.models import AccountsToken, MyUser, MyUserProfile
+from accounts.models import MyUser, MyUserProfile
 
 
 class MyUserAdmin(admin.ModelAdmin):
@@ -25,5 +25,4 @@ class MyUserProfileAdmin(admin.ModelAdmin):
 
 admin.site.register(MyUser, MyUserAdmin)
 admin.site.register(MyUserProfile, MyUserProfileAdmin)
-admin.site.register(AccountsToken)
 admin.site.unregister(Group)

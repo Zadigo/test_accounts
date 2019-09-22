@@ -13,8 +13,8 @@ from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import View
 
-from accounts.models import AccountsToken, MyUser, MyUserProfile
 from accounts.forms import UserLoginForm, UserSignupForm
+from accounts.models import MyUser, MyUserProfile
 
 
 class SignupView(View):

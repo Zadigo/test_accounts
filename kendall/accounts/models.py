@@ -66,28 +66,3 @@ class MyUserProfile(models.Model):
 
     def __str__(self):
         return self.myuser.email
-
-
-# #####################
-#       TOKENS
-# #####################
-
-class AccountsToken(models.Model):
-    token       = models.CharField(default='erzezeuieuo', max_length=15)
-    for_user    = models.PositiveIntegerField(blank=True, null=True)
-    expiry_date = models.DateField(default=timezone.now)
-    created_on  = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.token
-
-
-# #####################
-#       SIGNALS
-# #####################
-
-@receiver(post_save, sender=MyUser)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        MyUserProfile.objects.create(myuser=instance)
-        Token.objects.create(user=instance)

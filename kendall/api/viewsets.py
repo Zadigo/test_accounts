@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.viewsets import GenericViewSet
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-from api.serializers import (MYUSER, MyUserProfile, UserProfileSerializer,
+from api.serializers import (MYUSER, MYUSERPROFILE, UserProfileSerializer,
                              UserSerializer)
 
 
@@ -16,6 +16,6 @@ class Users(GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 
 class UserProfiles(GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     serializer_class = UserProfileSerializer
-    queryset = MyUserProfile.objects.all()
+    queryset = MYUSERPROFILE.objects.all()
     authentication_classes = []
     permission_classes = []
