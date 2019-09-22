@@ -4,7 +4,7 @@
 {% block title %}{% trans "Créer un compte" %}{% endblock title %}
 
 {% block registration_form %}
-    {% include "../components/registration_form.html" %}
+    {% include "../components/registration_form.html"  with form_id="signup_form" %}
 {% endblock registration_form %}
 
 

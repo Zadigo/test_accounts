@@ -122,7 +122,7 @@ class PaymentMethodsView(LoginRequiredMixin, View):
             params = {
                 'description': 'description'
             }
-            stripe.Customer.update(**params)
+            customer = stripe.Customer.update(**params)
         finally:
             response = {
                 'status': ''
