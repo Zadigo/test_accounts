@@ -11,6 +11,8 @@ from accounts.models import MyUser, MyUserProfile
 
 
 class UserCreationForm(forms.ModelForm):
+    """Form used to create a user in the admin"""
+
     password1 = CharField(label=_('Password'), widget=PasswordInput)
     password2 = CharField(label=_('Password confirmation'), widget=PasswordInput)
 
@@ -41,6 +43,8 @@ class UserCreationForm(forms.ModelForm):
         return user
         
 class UserChangeForm(forms.ModelForm):
+    """Form used to update a user in the admin"""
+
     password = ReadOnlyPasswordHashField()
 
     class Meta:
@@ -54,6 +58,8 @@ class UserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 class UserLoginForm(AuthenticationForm):
+    """Use this form to login a user"""
+
     username    = EmailField(widget=EmailInput(attrs={'placeholder': _('Email professionnel')}))
     password    = CharField(strip=False, widget=PasswordInput(attrs={'placeholder': _('Mot de passe')}))
     
@@ -67,6 +73,8 @@ class UserLoginForm(AuthenticationForm):
         return self.cleaned_data
 
 class UserSignupForm(forms.Form):
+    """Use this form to signup a user"""
+
     nom         = CharField(widget=TextInput(attrs={'placeholder': _('Joe')}))
     prenom      = CharField(widget=TextInput(attrs={'placeholder': _('Doe')}))
     email       = EmailField(widget=EmailInput(attrs={'placeholder': _('johndoe@gmail.com')}))
@@ -80,6 +88,9 @@ class UserSignupForm(forms.Form):
 # #####################
 
 class BaseProfileForm(forms.ModelForm):
+    """This form is used to modify elements on the main
+    user model (MyUser)
+    """
     class Meta:
         model   = MyUser
         fields  = ['nom', 'prenom']
@@ -89,6 +100,9 @@ class BaseProfileForm(forms.ModelForm):
         }
 
 class AddressProfileForm(forms.ModelForm):
+    """This form changes the elements on the profile of
+    a user
+    """
     class Meta:
         model   = MyUserProfile
         fields  = ['adresse', 'ville', 'code_postal']
@@ -97,3 +111,11 @@ class AddressProfileForm(forms.ModelForm):
             'ville': TextInput(attrs={'placeholder': 'Paris'}),
             'code_postal': TextInput(attrs={'placeholder': '59120'})
         }
+
+
+class NewPaymentMethodForm(forms.Form):
+    card_number = CharField(widget=TextInput(attrs={'placeholder': 'Card number', 'autocomplete': "cc-number"}))
+    expiry_date = forms.DateField()
+    cvv         = forms.CharField(max_length=3, widget=TextInput(attrs={'placeholder': 'CVV', "autocomplete": "cc-name"}))
+    # zip_code    = CharField(widget=TextInput(attrs={'placeholder':' Code postal'}))
+    name        = CharField(widget=TextInput(attrs={"placeholder": "Name", "autocomplete": "cc-name"}))

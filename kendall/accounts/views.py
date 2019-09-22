@@ -75,7 +75,8 @@ class LogoutView(View):
 
 class ForgotPasswordView(View):
     """This class helps the user reset his password 
-    when he has difficulties authenticating
+    by sendind himself an email with a link in order to
+    reset his password
     """
     def get(self, request, *args, **kwargs):
         context = {

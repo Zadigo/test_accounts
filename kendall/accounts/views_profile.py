@@ -7,7 +7,7 @@ from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import View
 
-from accounts.forms import AddressProfileForm, BaseProfileForm
+from accounts.forms import AddressProfileForm, BaseProfileForm, NewPaymentMethodForm
 from accounts.models import MyUser, MyUserProfile
 
 
@@ -113,7 +113,10 @@ class PaymentMethodsView(LoginRequiredMixin, View):
     """Allows the customer to update his/her payment method"""
     
     def get(self, request, *args, **kwargs):
-        return render(request, 'accounts/pages/payment_methods.html', {})
+        context = {
+            'form': NewPaymentMethodForm
+        }
+        return render(request, 'accounts/pages/payment_methods.html', context)
 
     def post(self, request, *kwargs):
         try:

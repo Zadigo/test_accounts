@@ -5,7 +5,81 @@
 {% block title %}{% trans "Modes de paiement" %}{% endblock %}
 
 {% block profile_content %}
-    <div class="card-panel">
-
+    <div class="card-panel center">
+        <button class="btn-large blue darken-3 waves-effect waves-light" id="nouveau_moyen">
+            <i class="material-icons left">credit_card</i>
+            Ajouter un nouveau moyen
+        </button>
     </div>
-{% endblock profile_content %}
+
+    <div class="moyens_de_paiment"></div>
+
+    <div class="card-panel hide" id="new_payment_form">
+        <form>
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field }}
+            {% endfor %}
+            <p>
+                <label>
+                    <input type="checkbox" name="default" id="default">
+                    <span>{% trans "Définir comme méthode de paiement par défaut" %}</span>
+                </label>
+            </p>
+            <button type="submit" class="btn">{% trans "Ajouter" %}</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+        $(document).ready(function () {
+            $("#nouveau_moyen").on("click", function(e) {
+                $("#new_payment_form").removeClass("hide")
+            })
+
+            $("#new_payment_form").find("#id_card_number").on("keyup", function() {
+                var number = /"^([0-9])"/g
+                var s = $(this).val()
+                var result = number.exec(s.toString())
+                
+                if (s === 4) {
+                    // Visa card
+                } else if (s === 5) {
+                    // Master card
+                } else {
+                    // Other kind of card
+                }
+            })
+
+            $("#new_payment_form").on("submit", function(e) {
+                e.preventDefault()
+
+                var cardName = $(this).find("input[name='name']").val()
+                var paymentCard = $("\
+                    <div class='card-panel'>\
+                        <div class='row'>\
+                            <div class='col s12 m2 l2'>\
+                                <i class='material-icons'>credit_card</i>\
+                            </div>\
+                            <div class='col s12 m8 l8'>\
+                                <p>Visa (5656)</p>\
+                                <p>Exp: 5/45</p>\
+                                <p>" + cardName + "</p>\
+                            </div>\
+                            <div class='col s12 m2 l2'>\
+                                <i class='material-icons'>delete</i>\
+                            </div>\
+                        </div>\
+                    </div>\
+                ")
+
+                // $(this).find("input").forEach(function(item) {
+                //     item.val(" ")
+                // })
+
+                $(".moyens_de_paiment").append(paymentCard)
+            })
+        });
+    </script>
+{% endblock %}
