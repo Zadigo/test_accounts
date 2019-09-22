@@ -14,7 +14,7 @@
             <div class="call-to-action">
                 <div class="lead-stronger">{% trans "Authentication with Django" %}</div>
                 <div class="lead-subtitle">
-                    {% trans "Le prêt à porter de marques" %}
+                    {% trans "Quick and simple authentication with Django" %}
                     <div class="lead-button">
                         <a href="{% url 'login' %}" class="btn-large light-blue darken-3">{% trans "Login" %}</a>
                     </div>
@@ -23,11 +23,9 @@
         </div>
     </div>
 
-    <p><img src="{% get_media_prefix %}images/hi.jpg" alt=""></p>
-
     <!-- BENEFITS -->
-    {% include "hero/benefits.html" %}
+    {% include "home/benefits.html" %}
 
     <!-- CONTACT -->
-    {% include "hero/contact.html" %}
+    {% include "home/contact.html" %}
 {% endblock hero %}

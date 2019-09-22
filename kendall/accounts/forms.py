@@ -112,10 +112,26 @@ class AddressProfileForm(forms.ModelForm):
             'code_postal': TextInput(attrs={'placeholder': '59120'})
         }
 
+def create_months():
+    months = []
+    for month in range(1, 13):
+        months.append((month, month))
+    return tuple(months)
+
+def create_years():
+    import datetime
+    years = []
+    current_year = datetime.datetime.now().year
+    for i in range(0, 6):
+        years.append((current_year + i, current_year + i))
+    return tuple(years)
 
 class NewPaymentMethodForm(forms.Form):
     card_number = CharField(widget=TextInput(attrs={'placeholder': 'Card number', 'autocomplete': "cc-number"}))
-    expiry_date = forms.DateField()
-    cvv         = forms.CharField(max_length=3, widget=TextInput(attrs={'placeholder': 'CVV', "autocomplete": "cc-name"}))
-    # zip_code    = CharField(widget=TextInput(attrs={'placeholder':' Code postal'}))
+    expiry_month = CharField(widget=forms.Select(attrs={'autocomplete': 'cc-exp-month'}, choices=create_months()))
+    expiry_year  = CharField(widget=forms.Select(attrs={'autocomplete': 'cc-exp-year'}, choices=create_years()))
+    cvv         = CharField(max_length=3, widget=TextInput(attrs={'placeholder': 'CVV', "autocomplete": "cc-csc"}))
     name        = CharField(widget=TextInput(attrs={"placeholder": "Name", "autocomplete": "cc-name"}))
+
+class NewPaymentMethodForm2(NewPaymentMethodForm):
+    zip_code    = CharField(widget=TextInput(attrs={'placeholder':' Code postal'}))

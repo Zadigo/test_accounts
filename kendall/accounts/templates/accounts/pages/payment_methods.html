@@ -26,7 +26,9 @@
                     <span>{% trans "Définir comme méthode de paiement par défaut" %}</span>
                 </label>
             </p>
-            <button type="submit" class="btn">{% trans "Ajouter" %}</button>
+            <button type="submit" class="btn">
+                <i class="material-icons left">check</i>{% trans "Ajouter" %}
+            </button>
         </form>
     </div>
 {% endblock %}
@@ -54,7 +56,13 @@
 
             $("#new_payment_form").on("submit", function(e) {
                 e.preventDefault()
+                
+                var lastFourDigits = /"([0-9]{4})$"/g
+                var n = $(this).find("#id_card_number").val()
+                var number = lastFourDigits.exec(n.toString())
 
+                var month = $(this).find("#id_expiry_month").val()
+                var year = $(this).find("#id_expiry_year").val()
                 var cardName = $(this).find("input[name='name']").val()
                 var paymentCard = $("\
                     <div class='card-panel'>\
@@ -63,8 +71,8 @@
                                 <i class='material-icons'>credit_card</i>\
                             </div>\
                             <div class='col s12 m8 l8'>\
-                                <p>Visa (5656)</p>\
-                                <p>Exp: 5/45</p>\
+                                <p>Visa (" + number + ")</p>\
+                                <p>Exp: "+  month + "/" + year + "</p>\
                                 <p>" + cardName + "</p>\
                             </div>\
                             <div class='col s12 m2 l2'>\

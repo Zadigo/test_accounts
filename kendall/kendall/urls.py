@@ -7,6 +7,7 @@ from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+from kendall.views import Home
 
 from accounts.rest_views import UserProfileSerializer, UserViewSet
 
@@ -22,7 +23,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
     
-    path('', TemplateView.as_view(template_name='hero/hero.html'), name='home'),
+    path('', Home.as_view(), name='home'),
 ]
 
 if settings.DEBUG:
