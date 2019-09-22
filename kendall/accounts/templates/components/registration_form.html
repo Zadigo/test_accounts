@@ -1,4 +1,4 @@
-<form method="post" id="{{ form_id }}">
+<form method="POST" id="{{ form_id }}">
     {% csrf_token %}
     {% for field in form %}
         <div class="input-field">
@@ -8,7 +8,7 @@
     
     {% if consent %}
         <p>
-            <label id="_cgu">
+            <label id="cgu">
                 <input type="checkbox" class="filled-in">
                 <span>Vous consentez à suivre nos <a href="{ url 'cgu' }">CGU</a></span>
             </label>
