@@ -60,11 +60,11 @@ class LoginView(View):
 
         if user:
             login(request, user)
-            return redirect(request.GET.get('next') or 'home')
+            return redirect(request.GET.get('next') or 'profile')
 
         else:
-            add_message(request, messages.WARNING, message=_("Nous n'arrivons pas à vous connectez"))
-            return redirect('home')
+            # add_message(request, messages.WARNING, message=_("Nous n'arrivons pas à vous connectez"))
+            return redirect('login')
 
 
 class LogoutView(View):
