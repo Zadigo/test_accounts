@@ -79,13 +79,19 @@ class ProfileDataView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         current_user = self.request.user
 
-        # Query the social_auth database and
-        # get a set of connected accounts
-        user = self.request.user.social_auth.get(uid=current_user.email)
-        if user:
-            context = {
-                'provider': user.provider
-            }
+        # There are cases where the user has
+        # no connected accounts. In which case,
+        # we get an error that no query exists
+        try:
+            # Query the social_auth database and
+            # get a set of connected accounts
+            user = self.request.user.social_auth.get(uid=current_user.email)
+            if user:
+                context = {
+                    'provider': user.provider
+                }
+        except Exception:
+            context = {}
 
         return render(request, 'accounts/profile_data.html', context)
 
