@@ -8,6 +8,9 @@ import MyData from './views/account/profile/MyData.vue'
 import PaymentMethods from './views/account/profile/PaymentMethods.vue'
 import PasswordChange from './views/account/profile/PasswordChange.vue'
 import Cart from './views/cart/Cart.vue'
+import Product from './views/product/Product.vue'
+import Products from './views/products/Products.vue'
+
 // import AccountDetails from './views/account/AccountDetails.vue'
 // import AddressBook from './views/account/AddressBook.vue'
 // import MyOrders from './views/account/MyOrders.vue'
@@ -91,12 +94,17 @@ export default new Router({
       component: PaymentMethods
     },
     {
-      path: '/cart',
-      name: 'cart',
-      component: Cart
+      path: '/shop',
+      name: 'shop',
+      component: Products
     },
     {
-      path: 'cart/payment',
+      path: '/shop/:id/:slug',
+      name: 'shop_product',
+      component: Product
+    },
+    {
+      path: '/cart',
       name: 'cart',
       component: Cart
     }
