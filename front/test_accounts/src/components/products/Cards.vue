@@ -6,6 +6,9 @@
                     <div class="card-image">
                         <img :src="product.url" :alt="product.name">
                     </div>
+
+                    <div v-show="product.discount.active" class="discount">{{ formatPct(product.discount.pct) }}</div>
+                    
                     <div class="hover-cover-4">
                         <h5>{{ product.name }}</h5>
                     </div>
@@ -17,7 +20,13 @@
 
 <script>
 export default {
-    props: ["product"]
+    props: ["product"],
+
+    methods: {
+        formatPct: function(n) {
+            return "-" + n.toString() + "%"
+        }
+    }
 }
 </script>
 

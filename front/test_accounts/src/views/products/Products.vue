@@ -38,6 +38,10 @@ export default {
                     "slug": "jupe-ciseau",
                     "url": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample17.jpg",
                     "price": 84,
+                    "discount": {
+                        "active": false,
+                        "pct": 0
+                    },
                     "active": true,
                     "created_on": ""
                 },
@@ -47,6 +51,10 @@ export default {
                     "slug": "jupe-vuitta",
                     "url": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample16.jpg",
                     "price": 45,
+                    "discount": {
+                        "active": true,
+                        "pct": 43
+                    },
                     "active": true,
                     "created_on": ""
                 },
@@ -56,6 +64,10 @@ export default {
                     "slug": "jupe-fashion",
                     "url": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample13.jpg",
                     "price": 34,
+                    "discount": {
+                        "active": true,
+                        "pct": 13
+                    },
                     "active": false,
                     "created_on": ""
                 },
@@ -65,6 +77,10 @@ export default {
                     "slug": "jupe-vida",
                     "url": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample11.jpg",
                     "price": 56,
+                    "discount": {
+                        "active": true,
+                        "pct": 25
+                    },
                     "active": false,
                     "created_on": ""
                 },
@@ -74,6 +90,10 @@ export default {
                     "slug": "jupe-goora",
                     "url": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample10.jpg",
                     "price": 76,
+                    "discount": {
+                        "active": false,
+                        "pct": 0
+                    },
                     "active": true,
                     "created_on": ""
                 },
@@ -83,6 +103,10 @@ export default {
                     "slug": "jupe-pura",
                     "url": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample6.jpg",
                     "price": 12,
+                    "discount": {
+                        "active": false,
+                        "pct": 0
+                    },
                     "active": true,
                     "created_on": ""
                 }
