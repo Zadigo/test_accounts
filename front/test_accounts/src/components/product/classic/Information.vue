@@ -9,7 +9,7 @@
             Amet, pariatur.
         </p>
 
-        <button class="btn-large waves-effect wave-light">
+        <button class="btn-large waves-effect wave-light" id="add_to_cart">
             <i class="material-icons left">shopping_cart</i>
             Ajouter au panier
         </button>
