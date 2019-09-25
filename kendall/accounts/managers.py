@@ -48,7 +48,7 @@ class MyUserManager(BaseUserManager):
         return user
 
 class UserProfileManager(QuerySet):
-    def related_user(self, user):
+    def related_user_profile(self, user):
         """Get the related user
         """
         return self.select_related('myuser').get(myuser=user)

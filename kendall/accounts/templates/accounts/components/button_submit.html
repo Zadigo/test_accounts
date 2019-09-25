@@ -1,0 +1,13 @@
+{% load i18n %}
+
+{% if with_toast %}
+    <button type="submit" class="btn red darken-1 waves-effect waves-light" 
+            onclick="M.toast({html: '{{ toast_message }}'})">
+        <i class="material-icons left">{{ icon }}</i>{% trans button_name %}
+    </button>    
+{% else %}
+    <button type="submit" class="btn red darken-1 waves-effect waves-light">
+        <i class="material-icons left">{{ icon }}</i>{% trans button_name %}
+    </button>    
+{% endif %}
+
